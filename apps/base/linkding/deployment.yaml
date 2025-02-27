@@ -12,7 +12,7 @@ spec:
       labels:
         app: linkding
         policy-type: "app"
-
+    spec:
       containers:
         - name: linkding
           image: sissbruecker/linkding:1.38.1
