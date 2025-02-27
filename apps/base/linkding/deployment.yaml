@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: linkding
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: linkding
+  template:
+    metadata:
+      labels:
+        app: linkding
+        policy-type: "app"
+
+      containers:
+        - name: linkding
+          image: sissbruecker/linkding:1.38.1
+
+          securityContext:
+            allowPrivilegeEscalation: false
+          
+          envFrom:
+            - configMapRef:
+              name: linkding-configmap
+
+          env:
+            - name: LD_SERVER_PORT
+              value: "3001"
+
+          ports:
+            - containerPort: 3001
+              protocol: TCP
+
+      restartPolicy: Always
+
+      volumeMounts:
+        - name: linkding-data
+          mountPath: /etc/linkding/data
+
+      volumes:
+        - name: linkding-data
+          persistentVolumeClaim:
+            claimName: linkding-data
