@@ -23,6 +23,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: linkding-configmap
+            - secretRef:
+                name: linkding-container-env
 
           env:
             - name: LD_SERVER_PORT
