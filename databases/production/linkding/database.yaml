@@ -7,6 +7,11 @@ spec:
   imageName: quay.io/enterprisedb/postgresql:16.1
   instances: 1
 
+  inheritedMetadata:
+    labels:
+      app: linkding-database
+      policy-type: "database"
+
   env:
     - name: POSTGRES_DB
       value: linkding
@@ -26,7 +31,6 @@ spec:
     - name: linkding-db-production-cluster-backup
       barmanObjectStore:
         destinationPath: "https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com/linkding"
-        serverName: linkding-db-production-cnpg
         s3Credentials:
           accessKeyId:
             name: linkding-db-production-backup-s3-key
