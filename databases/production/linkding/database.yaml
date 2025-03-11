@@ -23,7 +23,7 @@ spec:
         name: linkding-db-creds
 
   externalClusters:
-    - name: inkding-db-production-cluster-backup
+    - name: linkding-db-production-cluster-backup
       barmanObjectStore:
         destinationPath: "https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com/linkding"
         serverName: linkding-db-production-cnpg
