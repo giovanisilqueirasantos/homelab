@@ -12,3 +12,7 @@ spec:
     name: flux-system
   path: ./databases/production
   prune: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
