@@ -34,7 +34,6 @@ spec:
           secretAccessKey:
             name: linkding-db-production-backup-s3-key
             key: SECRET_KEY
-
   backup:
     barmanObjectStore:
       destinationPath: "https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com/linkding"
