@@ -14,6 +14,27 @@ spec:
   storage:
     size: 1Gi
 
+  bootstrap:
+    recovery:
+      source: linkding-db-production-cluster-backup
+      database: linkding
+      owner: linkding
+      secret:
+        name: linkding-db-creds
+
+  externalClusters:
+    - name: inkding-db-production-cluster-backup
+      barmanObjectStore:
+        destinationPath: "https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com/linkding"
+        serverName: linkding-db-production-cnpg
+        s3Credentials:
+          accessKeyId:
+            name: linkding-db-production-backup-s3-key
+            key: ACCESS_KEY
+          secretAccessKey:
+            name: linkding-db-production-backup-s3-key
+            key: SECRET_KEY
+
   managed:
     services:
       disabledDefaultServices:
