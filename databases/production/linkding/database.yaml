@@ -7,15 +7,6 @@ spec:
   imageName: quay.io/enterprisedb/postgresql:16.1
   instances: 1
 
-  inheritedMetadata:
-    labels:
-      app: linkding-database
-      policy-type: "database"
-
-  env:
-    - name: POSTGRES_DB
-      value: linkding
-
   storage:
     size: 1Gi
 
@@ -50,8 +41,10 @@ spec:
           key: SECRET_KEY
       wal:
         compression: gzip
+        encryption: ""
       data:
         compression: gzip
+        encryption: ""
     retentionPolicy: 14d
 
   managed:
