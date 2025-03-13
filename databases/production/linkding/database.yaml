@@ -10,13 +10,13 @@ spec:
   storage:
     size: 1Gi
 
-  # bootstrap:
-  #   recovery:
-  #     source: linkding-db-production-cluster-backup
-  #     database: linkding
-  #     owner: linkding
-  #     secret:
-  #       name: linkding-db-creds
+  bootstrap:
+    recovery:
+      source: linkding-db-production-cluster-backup
+      database: linkding
+      owner: linkding
+      secret:
+        name: linkding-db-creds
 
   externalClusters:
     - name: linkding-db-production-cluster-backup
