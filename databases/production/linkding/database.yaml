@@ -21,7 +21,7 @@ spec:
   externalClusters:
     - name: linkding-db-production-cluster-backup
       barmanObjectStore:
-        destinationPath: "https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com/linkding"
+        destinationPath: "https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com/enio-pg-backup-linkding"
         s3Credentials:
           accessKeyId:
             name: linkding-db-production-backup-s3-key
@@ -31,7 +31,7 @@ spec:
             key: SECRET_KEY
   backup:
     barmanObjectStore:
-      destinationPath: "https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com/linkding"
+      destinationPath: "https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com/enio-pg-backup-linkding"
       s3Credentials:
         accessKeyId:
           name: linkding-db-production-backup-s3-key
@@ -41,10 +41,8 @@ spec:
           key: SECRET_KEY
       wal:
         compression: gzip
-        encryption: ""
       data:
         compression: gzip
-        encryption: ""
     retentionPolicy: 14d
 
   managed:
