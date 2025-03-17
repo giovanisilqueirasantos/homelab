@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: livebook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: livebook
+  template:
+    metadata:
+      labels:
+        app: livebook
+    spec:
+      containers:
+        - name: livebook
+          image: ghcr.io/livebook-dev/livebook:latest
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /data
+              name: livebook-data
+          env:
+            - name: LIVEBOOK_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: livebook-secret
+                  key: LIVEBOOK_PASSWORD
+      volumes:
+        - name: livebook-data
+          persistentVolumeClaim:
+            claimName: livebook-data

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: livebook
+spec:
+  type: LoadBalancer
+  selector:
+    app: livebook
+  ports:
+    - protocol: TCP
+      port: 3002
+      targetPort: 8080
