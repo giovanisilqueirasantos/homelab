@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: livebook
 resources:
   - secret.yaml
-  - ../../base/linkding/
+  - ../../base/livebook/
