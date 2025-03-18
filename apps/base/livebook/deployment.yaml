@@ -28,6 +28,18 @@ spec:
                 secretKeyRef:
                   name: livebook-secret
                   key: LIVEBOOK_PASSWORD
+            - name: LIVEBOOK_SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: livebook-secret
+                  key: LIVEBOOK_SECRET_KEY_BASE
+            - name: LIVEBOOK_COOKIE
+              valueFrom:
+                secretKeyRef:
+                  name: livebook-secret
+                  key: LIVEBOOK_COOKIE
+            - name: LIVEBOOK_DATA_PATH
+              value: "/data"
       volumes:
         - name: livebook-data
           persistentVolumeClaim:
