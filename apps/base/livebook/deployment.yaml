@@ -21,6 +21,8 @@ spec:
             - mountPath: /data
               name: livebook-data
           env:
+            - name: LIVEBOOK_PORT
+              value: 8080
             - name: LIVEBOOK_PASSWORD
               valueFrom:
                 secretKeyRef:
