@@ -16,7 +16,7 @@ spec:
         - name: livebook
           image: ghcr.io/livebook-dev/livebook:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 3002
           volumeMounts:
             - mountPath: /data
               name: livebook-data
