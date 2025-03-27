@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: passbolt
 resources:
   - configmap.yaml
-  - secret.yaml
   - ../../base/passbolt/
