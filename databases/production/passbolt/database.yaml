@@ -14,13 +14,13 @@ spec:
   storage:
     size: 1Gi
 
-  bootstrap:
-    recovery:
-      source: passbolt-db-production-cluster-backup
-      database: passbolt
-      owner: passbolt
-      secret:
-        name: passbolt-db-creds
+  # bootstrap:
+  #   recovery:
+  #     source: passbolt-db-production-cluster-backup
+  #     database: passbolt
+  #     owner: passbolt
+  #     secret:
+  #       name: passbolt-db-creds
 
   externalClusters:
     - name: passbolt-db-production-cluster-backup
