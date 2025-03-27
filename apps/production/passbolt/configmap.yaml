@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: passbolt-configmap
+data:
+  DATASOURCES_DEFAULT_DRIVER: Cake\Database\Driver\Postgres
+  DATASOURCES_DEFAULT_ENCODING: "utf8"
+  DATASOURCES_DEFAULT_HOST: passbolt-db-production-cnpg-rw
+  DATASOURCES_DEFAULT_DATABASE: passbolt
+  DATASOURCES_DEFAULT_USERNAME: app
+  DATASOURCES_DEFAULT_PASSWORD: SuperSecureP@ssword

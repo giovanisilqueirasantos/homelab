@@ -18,15 +18,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: passbolt-configmap
-          env:
-            - name: DATASOURCES_DEFAULT_HOST
-              value: "postgres"
-            - name: DATASOURCES_DEFAULT_DATABASE
-              value: "passbolt"
-            - name: DATASOURCES_DEFAULT_USERNAME
-              value: "passbolt"
-            - name: DATASOURCES_DEFAULT_PASSWORD
-              value: "SuperSecureP@ssword"
           ports:
             - containerPort: 80
           volumeMounts:
