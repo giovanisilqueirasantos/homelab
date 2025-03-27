@@ -8,4 +8,3 @@ data:
   DATASOURCES_DEFAULT_HOST: passbolt-db-production-cnpg-rw
   DATASOURCES_DEFAULT_DATABASE: passbolt
   DATASOURCES_DEFAULT_USERNAME: app
-  DATASOURCES_DEFAULT_PASSWORD: SuperSecureP@ssword
