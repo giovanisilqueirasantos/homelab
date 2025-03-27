@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: passbolt-db-production-scheduled-backup
+spec:
+  immediate: true
+  schedule: "0 5 3 * * *"
+  backupOwnerReference: cluster
+  cluster:
+    name: passbolt-db-production-cnpg

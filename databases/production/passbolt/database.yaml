@@ -1,0 +1,54 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: passbolt-db-production-cnpg
+spec:
+  description: Postgres cluster for the passbolt application
+  imageName: quay.io/enterprisedb/postgresql:16.1
+  instances: 1
+
+  storage:
+    size: 1Gi
+
+  bootstrap:
+    recovery:
+      source: passbolt-db-production-cluster-backup
+      database: passbolt
+      owner: passbolt
+      secret:
+        name: passbolt-db-creds
+
+  externalClusters:
+    - name: passbolt-db-production-cluster-backup
+      barmanObjectStore:
+        destinationPath: "s3://enio-pg-backup-passbolt"
+        endpointURL: https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com
+        s3Credentials:
+          accessKeyId:
+            name: passbolt-db-production-backup-s3-key
+            key: ACCESS_KEY
+          secretAccessKey:
+            name: passbolt-db-production-backup-s3-key
+            key: SECRET_KEY
+  backup:
+    barmanObjectStore:
+      destinationPath: "s3://enio-pg-backup-passbolt"
+      endpointURL: https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com
+      s3Credentials:
+        accessKeyId:
+          name: passbolt-db-production-backup-s3-key
+          key: ACCESS_KEY
+        secretAccessKey:
+          name: passbolt-db-production-backup-s3-key
+          key: SECRET_KEY
+      wal:
+        compression: gzip
+      data:
+        compression: gzip
+    retentionPolicy: 14d
+
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r
