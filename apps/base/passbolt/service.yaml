@@ -6,6 +6,6 @@ spec:
   type: LoadBalancer
   ports:
     - port: 3004
-      targetPort: 80
+      targetPort: 443
   selector:
     app: passbolt

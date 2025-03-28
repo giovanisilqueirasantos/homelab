@@ -20,7 +20,7 @@ spec:
             - configMapRef:
                 name: passbolt-configmap
           ports:
-            - containerPort: 80
+            - containerPort: 443
           volumeMounts:
             - name: passbolt-gpg-data
               mountPath: /etc/passbolt/gpg
