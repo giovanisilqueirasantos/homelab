@@ -19,6 +19,9 @@ spec:
           envFrom:
             - configMapRef:
                 name: passbolt-configmap
+          env:
+            - name: PASSBOLT_SSL_FORCE
+              value: false
           ports:
             - containerPort: 80
           volumeMounts:
