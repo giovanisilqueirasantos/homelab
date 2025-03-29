@@ -3,7 +3,8 @@ kind: ConfigMap
 metadata:
   name: passbolt-configmap
 data:
-  APP_FULL_BASE_URL: https://10.43.191.238
+  APP_FULL_BASE_URL: http://10.43.191.238
+  PASSBOLT_SSL_FORCE: false
   DATASOURCES_DEFAULT_DRIVER: Cake\Database\Driver\Postgres
   DATASOURCES_DEFAULT_ENCODING: "utf8"
   DATASOURCES_DEFAULT_URL: "postgres://app:p1FfaRO1YMAgbK1iXr5BaDojxBrCal4aD9iUvZ1VMPfYBdYw8a4AXoGbOkX9botX@passbolt-db-production-cnpg-rw:5432/passbolt?schema=passbolt"
