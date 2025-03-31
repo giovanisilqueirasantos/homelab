@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: passbolt
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
-    - port: 3004
-      targetPort: 80
+    - protocol: TCP
+      port: 3004
+      targetPort: 3004
   selector:
     app: passbolt
