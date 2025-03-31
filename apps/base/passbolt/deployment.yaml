@@ -13,6 +13,10 @@ spec:
         app: passbolt
         policy-type: "app"
     spec:
+      securityContext:
+        runAsUser: 33
+        runAsGroup: 33
+        fsGroup: 33
       containers:
         - name: passbolt
           image: passbolt/passbolt:latest-ce-non-root
@@ -20,7 +24,7 @@ spec:
             - configMapRef:
                 name: passbolt-configmap
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           volumeMounts:
             - name: passbolt-gpg-data
               mountPath: /etc/passbolt/gpg
