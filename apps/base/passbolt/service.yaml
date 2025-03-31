@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: passbolt
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 3004
