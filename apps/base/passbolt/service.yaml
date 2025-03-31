@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: passbolt
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 3004
-      targetPort: 4433
+      targetPort: 8080
   selector:
     app: passbolt

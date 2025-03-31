@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: passbolt
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: HostSNI(`100.96.0.3`)
+      services:
+        - name: passbolt
+          port: 3004
+  tls:
+    secretName: passbolt-tls
+    passthrough: false
