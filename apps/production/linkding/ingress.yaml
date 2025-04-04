@@ -19,5 +19,5 @@ spec:
               number: 80
   tls:
     - hosts:
-      - "linkding.eniohomelab.com"
+        - "linkding.eniohomelab.com"
       secretName: linkding-certificate-tls
