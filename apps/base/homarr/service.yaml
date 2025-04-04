@@ -5,8 +5,8 @@ metadata:
 spec:
   ports:
     - protocol: TCP
-      port: 3000
+      port: 80
       targetPort: 7575
   selector:
     app: homarr
-  type: LoadBalancer
+  type: ClusterIP
