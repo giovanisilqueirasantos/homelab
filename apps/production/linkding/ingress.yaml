@@ -18,4 +18,6 @@ spec:
             port:
               number: 80
   tls:
-    secretName: linkding-certificate-tls
+    - hosts:
+      - "linkding.eniohomelab.com"
+      secretName: linkding-certificate-tls
