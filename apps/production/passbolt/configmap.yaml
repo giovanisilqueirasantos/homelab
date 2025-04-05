@@ -7,3 +7,11 @@ data:
   DATASOURCES_DEFAULT_DRIVER: Cake\Database\Driver\Postgres
   DATASOURCES_DEFAULT_ENCODING: "utf8"
   DATASOURCES_DEFAULT_URL: "postgres://app:p1FfaRO1YMAgbK1iXr5BaDojxBrCal4aD9iUvZ1VMPfYBdYw8a4AXoGbOkX9botX@passbolt-db-production-cnpg-rw:5432/passbolt?schema=passbolt"
+  EMAIL_TRANSPORT_DEFAULT_HOST: "smtp.google.com"
+  EMAIL_TRANSPORT_DEFAULT_PORT: "587"
+  EMAIL_TRANSPORT_DEFAULT_USERNAME: "eniohomelab@gmail.com"
+  EMAIL_TRANSPORT_DEFAULT_TLS: "true"
+  EMAIL_DEFAULT_FROM: "eniohomelab@gmail.com"
+  EMAIL_DEFAULT_TRANSPORT: "default"
+  EMAIL_DEFAULT_EMAIL_FORMAT: "both"
+  EMAIL_DEFAULT_LOG: "true"

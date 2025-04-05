@@ -4,4 +4,5 @@ namespace: passbolt
 resources:
   - configmap.yaml
   - ingress.yaml
+  - secret.yaml
   - ../../base/passbolt/

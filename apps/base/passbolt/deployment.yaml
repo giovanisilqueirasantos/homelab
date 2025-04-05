@@ -23,6 +23,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: passbolt-configmap
+            - secretRef:
+                name: passbolt-container-env
           ports:
             - containerPort: 8080
           volumeMounts:
