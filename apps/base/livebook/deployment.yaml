@@ -17,17 +17,12 @@ spec:
           image: ghcr.io/livebook-dev/livebook:latest
           ports:
             - containerPort: 80
-            - containerPort: 81
           volumeMounts:
             - mountPath: /data
               name: livebook-data
           env:
             - name: LIVEBOOK_PORT
               value: "80"
-            - name: LIVEBOOK_IFRAME_URL
-              value: "https://livebook.iframe.eniohomelab.com"
-            - name: LIVEBOOK_IFRAME_PORT
-              value: "81"
             - name: LIVEBOOK_PASSWORD
               valueFrom:
                 secretKeyRef:

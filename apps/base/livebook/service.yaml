@@ -7,9 +7,4 @@ spec:
   selector:
     app: livebook
   ports:
-    - protocol: TCP
       port: 80
-      name: app
-    - protocol: TCP
-      port: 81
-      name: iframe
