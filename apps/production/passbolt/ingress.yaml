@@ -1,22 +1,22 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: linkding
+  name: passbolt
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   rules:
-  - host: "linkding.eniohomelab.com"
+  - host: "passbolt.eniohomelab.com"
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: linkding
+            name: passbolt
             port:
               number: 80
   tls:
     - hosts:
-        - "linkding.eniohomelab.com"
-      secretName: linkding-certificate-tls
+        - "passbolt.eniohomelab.com"
+      secretName: passbolt-certificate-tls

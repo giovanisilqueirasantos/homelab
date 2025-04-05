@@ -3,15 +3,13 @@ kind: Service
 metadata:
   name: livebook
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: livebook
   ports:
     - protocol: TCP
-      port: 3002
-      targetPort: 3002
+      port: 80
       name: app
     - protocol: TCP
-      port: 3003
-      targetPort: 3003
+      port: 81
       name: iframe
