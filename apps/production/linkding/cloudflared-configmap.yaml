@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-configmap
+  namespace: linkding
+data:
+  config.yaml: |
+    tunnel: linkding
+    credentials-file: /etc/cloudflared/creds/credentials.json
+
+    no-autoupdate: true
+    ingress:
+    - hostname: linkding.eniohomelab.com
+      service: http://linkding:80
