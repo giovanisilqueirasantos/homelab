@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-configmap
+data:
+  config.yaml: |
+    tunnel: homarr
+    credentials-file: /etc/cloudflared/creds/credentials.json
+
+    no-autoupdate: true
+    ingress:
+    - hostname: homarr.eniohomelab.com
+      service: http://homarr:80
+    - service: http_status:404

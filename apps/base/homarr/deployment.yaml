@@ -23,7 +23,7 @@ spec:
             - name: SECRET_ENCRYPTION_KEY
               valueFrom:
                 secretKeyRef:
-                  name: homarr-secret
+                  name: homarr-container-env
                   key: SECRET_ENCRYPTION_KEY
           volumeMounts:
             - name: homarr-data
