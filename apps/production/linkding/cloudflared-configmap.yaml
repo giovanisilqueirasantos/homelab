@@ -12,3 +12,4 @@ data:
     ingress:
     - hostname: linkding.eniohomelab.com
       service: http://linkding:80
+    - service: http_status:404
