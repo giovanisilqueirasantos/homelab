@@ -2,7 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: passbolt
 resources:
-  - configmap.yaml
-  - ingress.yaml
-  - secret.yaml
+  - passbolt-configmap.yaml
+  - passbolt-container-env-secret.yaml
+  - cloudflared-deployment.yaml
+  - cloudflared-configmap.yaml
+  - cloudflared-creds-secret.yaml
   - ../../base/passbolt/
