@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-configmap
+data:
+  config.yaml: |
+    tunnel: jellyfin
+    credentials-file: /etc/cloudflared/creds/credentials.json
+
+    no-autoupdate: true
+    ingress:
+    - hostname: jellyfin.eniohomelab.com
+      service: http://jellyfin:80
+    - service: http_status:404
