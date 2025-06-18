@@ -26,17 +26,17 @@ spec:
             - name: LIVEBOOK_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: livebook-secret
+                  name: livebook-container-env
                   key: LIVEBOOK_PASSWORD
             - name: LIVEBOOK_SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
-                  name: livebook-secret
+                  name: livebook-container-env
                   key: LIVEBOOK_SECRET_KEY_BASE
             - name: LIVEBOOK_COOKIE
               valueFrom:
                 secretKeyRef:
-                  name: livebook-secret
+                  name: livebook-container-env
                   key: LIVEBOOK_COOKIE
             - name: LIVEBOOK_DATA_PATH
               value: "/data"
