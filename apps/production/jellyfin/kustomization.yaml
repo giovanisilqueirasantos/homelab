@@ -5,4 +5,4 @@ resources:
   - cloudflared-configmap.yaml
   - cloudflared-deployment.yaml
   - cloudflared-creds-secret.yaml
-  - ../../base/linkding/
+  - ../../base/jellyfin/
