@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trilium
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trilium
+  template:
+    metadata:
+      labels:
+        app: trilium
+    spec:
+      containers:
+        - name: trilium
+          image: triliumnext/notes:rootless
+          env:
+          - name: TRILIUM_UID
+            value: "1001"
+          - name: TRILIUM_GID
+            value: "1001"
+          securityContext:
+            runAsUser: ${TRILIUM_UID:-1001}
+            runAsGroup: ${TRILIUM_GID:-1001}
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: trilium-data
+              mountPath: /home/trilium/trilium-data
+      volumes:
+        - name: trilium-data
+          persistentVolumeClaim:
+            claimName: trilium-data
