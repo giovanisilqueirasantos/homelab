@@ -21,8 +21,8 @@ spec:
           - name: TRILIUM_GID
             value: "1001"
           securityContext:
-            runAsUser: ${TRILIUM_UID:-1001}
-            runAsGroup: ${TRILIUM_GID:-1001}
+            runAsUser: 1001
+            runAsGroup: 1001
             allowPrivilegeEscalation: false
           ports:
             - containerPort: 8080
