@@ -14,16 +14,7 @@ spec:
     spec:
       containers:
         - name: trilium
-          image: triliumnext/notes:rootless
-          env:
-          - name: TRILIUM_UID
-            value: "1001"
-          - name: TRILIUM_GID
-            value: "1001"
-          securityContext:
-            runAsUser: 1001
-            runAsGroup: 1001
-            allowPrivilegeEscalation: false
+          image: triliumnext/notes:latest
           ports:
             - containerPort: 8080
           volumeMounts:
