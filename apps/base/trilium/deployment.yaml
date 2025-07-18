@@ -15,6 +15,11 @@ spec:
       containers:
         - name: trilium
           image: triliumnext/notes:latest
+          env:
+            - name: TRILIUM_DATA
+              value: /home/trilium/trilium-data
+            - name: TRILIUM_PORT
+              value: "8080"
           ports:
             - containerPort: 8080
           volumeMounts:
