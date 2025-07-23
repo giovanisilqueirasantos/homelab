@@ -37,7 +37,7 @@ spec:
           path: /mnt/eniostorage
       - name: config
         persistentVolumeClaim:
-          claimName: jellyfin-data
+          claimName: jellyfin-config
       - name: data
         persistentVolumeClaim:
           claimName: jellyfin-data
