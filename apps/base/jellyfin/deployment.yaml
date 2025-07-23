@@ -22,10 +22,10 @@ spec:
         volumeMounts:
         - name: media
           mountPath: /media
-        # - name: config
-        #   mountPath: /config
-        # - name: data
-        #   mountPath: /data
+        - name: config
+          mountPath: /config
+        - name: data
+          mountPath: /data
         env:
         - name: JELLYFIN_DATA_DIR
           value: /data
@@ -35,9 +35,9 @@ spec:
       - name: media
         hostPath:
           path: /mnt/eniostorage
-      # - name: config
-      #   persistentVolumeClaim:
-      #     claimName: jellyfin-data
-      # - name: data
-      #   persistentVolumeClaim:
-      #     claimName: jellyfin-data
+      - name: config
+        persistentVolumeClaim:
+          claimName: jellyfin-data
+      - name: data
+        persistentVolumeClaim:
+          claimName: jellyfin-data
