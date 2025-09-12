@@ -22,7 +22,6 @@ spec:
         volumeMounts:
         - name: media
           mountPath: /media
-          readOnly: true
         - name: config
           mountPath: /config
         - name: data
