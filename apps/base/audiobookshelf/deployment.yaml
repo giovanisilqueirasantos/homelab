@@ -30,11 +30,11 @@ spec:
           mountPath: /metadata
       volumes:
       - name: audiobooks
-        hostPath:
-          path: /mnt/eniostorage/gio/audiobooks
+        persistentVolumeClaim:
+          claimName: audiobookshelf-audiobooks
       - name: podcasts
-        hostPath:
-          path: /mnt/eniostorage/gio/podcasts
+        persistentVolumeClaim:
+          claimName: audiobookshelf-podcasts
       - name: config
         persistentVolumeClaim:
           claimName: audiobookshelf-config
