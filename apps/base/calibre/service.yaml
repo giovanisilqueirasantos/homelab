@@ -7,6 +7,9 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
+    - protocol: TCP
+      port: 81
+      targetPort: 8081
   selector:
     app: calibre
   type: ClusterIP
