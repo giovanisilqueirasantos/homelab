@@ -4,11 +4,11 @@ metadata:
   name: cloudflared-configmap
 data:
   config.yaml: |
-    tunnel: calibre
+    tunnel: kavita
     credentials-file: /etc/cloudflared/creds/credentials.json
 
     no-autoupdate: true
     ingress:
-    - hostname: calibre.eniohomelab.com
-      service: http://calibre:80
+    - hostname: kavita.eniohomelab.com
+      service: http://kavita:80
     - service: http_status:404
