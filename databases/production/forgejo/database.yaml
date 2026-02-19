@@ -1,0 +1,54 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: forgejo-db-production-cnpg
+spec:
+  description: Postgres cluster for the forgejo application
+  imageName: quay.io/enterprisedb/postgresql:16.1
+  instances: 1
+
+  storage:
+    size: 1Gi
+
+  # bootstrap:
+  #   recovery:
+  #     source: forgejo-db-production-cluster-backup
+  #     database: forgejodb
+  #     owner: forgejo
+  #     secret:
+  #       name: forgejo-db-creds
+
+  externalClusters:
+    - name: forgejo-db-production-cluster-backup
+      barmanObjectStore:
+        destinationPath: "s3://enio-pg-backup-forgejo"
+        endpointURL: https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com
+        s3Credentials:
+          accessKeyId:
+            name: forgejo-db-production-backup-s3-key
+            key: ACCESS_KEY
+          secretAccessKey:
+            name: forgejo-db-production-backup-s3-key
+            key: SECRET_KEY
+  backup:
+    barmanObjectStore:
+      destinationPath: "s3://enio-pg-backup-forgejo"
+      endpointURL: https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com
+      s3Credentials:
+        accessKeyId:
+          name: forgejo-db-production-backup-s3-key
+          key: ACCESS_KEY
+        secretAccessKey:
+          name: forgejo-db-production-backup-s3-key
+          key: SECRET_KEY
+      wal:
+        compression: gzip
+      data:
+        compression: gzip
+    retentionPolicy: 14d
+
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r
