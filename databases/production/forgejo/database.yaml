@@ -10,13 +10,13 @@ spec:
   storage:
     size: 1Gi
 
-  # bootstrap:
-  #   recovery:
-  #     source: forgejo-db-production-cluster-backup
-  #     database: forgejodb
-  #     owner: forgejo
-  #     secret:
-  #       name: forgejo-db-creds
+  bootstrap:
+    recovery:
+      source: forgejo-db-production-cluster-backup
+      database: forgejodb
+      owner: forgejo
+      secret:
+        name: forgejo-db-creds
 
   externalClusters:
     - name: forgejo-db-production-cluster-backup
