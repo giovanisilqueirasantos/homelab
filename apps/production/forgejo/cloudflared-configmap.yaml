@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-configmap
+data:
+  config.yaml: |
+    tunnel: forgejo
+    credentials-file: /etc/cloudflared/creds/credentials.json
+
+    no-autoupdate: true
+    ingress:
+    - hostname: forgejo.eniohomelab.com
+      service: http://forgejo:80
+    - service: http_status:404

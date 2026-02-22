@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: forgejo-configmap
+data:
+  FORGEJO__database__DB_TYPE: postgres
+  FORGEJO__database__NAME: forgejo
+  FORGEJO__database__HOST: forgejo-db-production-cnpg-rw:5432
