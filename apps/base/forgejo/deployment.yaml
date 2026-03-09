@@ -14,32 +14,25 @@ spec:
         policy-type: "app"
     spec:
       containers:
-        - name: forgejo
-          image: codeberg.org/forgejo/forgejo:13
-
-          envFrom:
-            - configMapRef:
-                name: forgejo-configmap
-            - secretRef:
-                name: forgejo-container-env
-
-          env:
-            - name: USER_UID
-              value: "1000"
-            - name: USER_GID
-              value: "1000"
-
-          ports:
-            - containerPort: 3000
-              protocol: TCP
-
-      restartPolicy: Always
-
-      volumeMounts:
-        - name: forgejo-data
+      - name: forgejo
+        image: codeberg.org/forgejo/forgejo:13
+        envFrom:
+        - configMapRef:
+          name: forgejo-configmap
+        - secretRef:
+          name: forgejo-container-env
+        env:
+        - name: USER_UID
+          value: "1000"
+        - name: USER_GID
+          value: "1000"
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        volumeMounts:
+        - name: data
           mountPath: /data
-
       volumes:
-        - name: forgejo-data
-          persistentVolumeClaim:
-            claimName: forgejo-data
+      - name: data
+        persistentVolumeClaim:
+          claimName: forgejo-data
