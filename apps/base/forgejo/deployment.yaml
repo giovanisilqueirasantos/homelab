@@ -19,9 +19,9 @@ spec:
 
           envFrom:
             - configMapRef:
-              name: forgejo-configmap
+                name: forgejo-configmap
             - secretRef:
-              name: forgejo-container-env
+                name: forgejo-container-env
 
           env:
             - name: USER_UID
