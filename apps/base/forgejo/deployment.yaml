@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: forgejo
-          image: codeberg.org/forgejo/forgejo:13
+          image: codeberg.org/forgejo/forgejo:v15.0.1
 
           envFrom:
             - configMapRef:
