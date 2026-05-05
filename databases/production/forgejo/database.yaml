@@ -13,6 +13,7 @@ spec:
   bootstrap:
     recovery:
       source: forgejo-db-production-cluster-backup
+      serverName: forgejo-db-production-cnpg
       database: app
       owner: app
       secret:
