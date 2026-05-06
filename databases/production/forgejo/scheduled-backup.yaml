@@ -7,4 +7,4 @@
    schedule: "0 0 3 * * *"
    backupOwnerReference: cluster
    cluster:
-     name: forgejo-db-production-cnpg
+     name: forgejo-db-production-cnpg-v1
