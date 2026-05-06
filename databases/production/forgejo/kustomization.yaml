@@ -4,4 +4,4 @@ namespace: forgejo
 resources:
   - database.yaml
   - secret.yaml
-  - scheduled-backup.yaml
+#   - scheduled-backup.yaml
