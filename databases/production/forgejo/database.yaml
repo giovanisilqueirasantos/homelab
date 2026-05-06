@@ -24,7 +24,7 @@ spec:
         destinationPath: "s3://enio-pg-backup-forgejo"
         serverName: forgejo-db-production-cnpg
         endpointURL: https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com
-	serverName: forgejo-db-production-cnpg-v1
+        serverName: forgejo-db-production-cnpg-v1
         s3Credentials:
           accessKeyId:
             name: forgejo-db-production-backup-s3-key
