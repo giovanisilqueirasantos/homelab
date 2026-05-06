@@ -18,7 +18,7 @@ spec:
     recovery:
       source: linkding-db-production-cluster-backup
       database: linkding
-      owner: linkding
+      owner: app
       secret:
         name: linkding-db-creds
 
