@@ -18,7 +18,7 @@ spec:
     recovery:
       source: passbolt-db-production-cluster-backup
       database: passbolt
-      owner: passbolt
+      owner: app
       secret:
         name: passbolt-db-creds
 
