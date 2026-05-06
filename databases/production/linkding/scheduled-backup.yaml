@@ -7,4 +7,4 @@ spec:
   schedule: "0 0 3 * * *"
   backupOwnerReference: cluster
   cluster:
-    name: linkding-db-production-cnpg
+    name: linkding-db-production-cnpg-v1

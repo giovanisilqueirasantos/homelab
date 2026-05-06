@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: linkding-db-production-cnpg
+  name: linkding-db-production-cnpg-v1
 spec:
   description: Postgres cluster for the linkding application
   imageName: quay.io/enterprisedb/postgresql:16.1
@@ -27,6 +27,7 @@ spec:
       barmanObjectStore:
         destinationPath: "s3://enio-pg-backup-linkding"
         endpointURL: https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com
+        serverName: linkding-db-production-cnpg
         s3Credentials:
           accessKeyId:
             name: linkding-db-production-backup-s3-key

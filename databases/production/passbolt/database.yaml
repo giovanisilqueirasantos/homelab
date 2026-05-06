@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: passbolt-db-production-cnpg
+  name: passbolt-db-production-cnpg-v1
 spec:
   description: Postgres cluster for the passbolt application
   imageName: quay.io/enterprisedb/postgresql:16.1
@@ -27,6 +27,7 @@ spec:
       barmanObjectStore:
         destinationPath: "s3://enio-pg-backup-passbolt"
         endpointURL: https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com
+        serverName: passbolt-db-production-cnpg
         s3Credentials:
           accessKeyId:
             name: passbolt-db-production-backup-s3-key
