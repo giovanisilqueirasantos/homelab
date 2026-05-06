@@ -32,7 +32,7 @@ spec:
             key: SECRET_KEY
   backup:
      barmanObjectStore:
-       destinationPath: "s3://enio-pg-backup-forgejo"
+       destinationPath: "s3://enio-pg-backup-forgejo/backup1"
        endpointURL: https://164d89d21e40fc0dca2adff949fe6905.r2.cloudflarestorage.com
        s3Credentials:
          accessKeyId:
