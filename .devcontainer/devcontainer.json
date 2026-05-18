@@ -1,0 +1,12 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "user",
+  "workspaceFolder": "/home/user/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/workspace,type=bind",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "zsh"
+  },
+  "postCreateCommand": ".devcontainer/setup"
+}

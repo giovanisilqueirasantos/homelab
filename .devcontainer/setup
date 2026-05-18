@@ -1,0 +1,9 @@
+git clone https://github.com/zsh-users/zsh-completions.git /home/user/.zsh-completions
+
+sudo npm install --global pure-prompt
+
+mise install
+
+ln -s ~/dotfiles/.config/nvim ~/.config/nvim
+
+curl -fsSL https://claude.ai/install.sh | bash
