@@ -1,0 +1,84 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mimir
+  namespace: monitoring
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: mimir-distributed
+      version: "5.3.0"
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: monitoring
+      interval: 12h
+  values:
+    mimir:
+      structuredConfig:
+        common:
+          storage:
+            backend: filesystem
+        blocks_storage:
+          filesystem:
+            dir: /data/blocks
+        compactor:
+          data_dir: /data/compactor
+        ruler_storage:
+          filesystem:
+            dir: /data/ruler
+        ingester:
+          ring:
+            replication_factor: 1
+        store_gateway:
+          sharding_ring:
+            replication_factor: 1
+        limits:
+          compactor_blocks_retention_period: 30d
+
+    distributor:
+      replicas: 1
+
+    ingester:
+      replicas: 1
+      zoneAwareReplication:
+        enabled: false
+      persistentVolume:
+        size: 10Gi
+
+    querier:
+      replicas: 1
+
+    query_frontend:
+      replicas: 1
+
+    query_scheduler:
+      enabled: false
+
+    store_gateway:
+      replicas: 1
+      zoneAwareReplication:
+        enabled: false
+      persistentVolume:
+        size: 10Gi
+
+    compactor:
+      replicas: 1
+      persistentVolume:
+        size: 5Gi
+
+    alertmanager:
+      enabled: false
+
+    ruler:
+      enabled: false
+
+    overrides_exporter:
+      enabled: false
+
+    rollout_operator:
+      enabled: false
+
+    nginx:
+      enabled: true

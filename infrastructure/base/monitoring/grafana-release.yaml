@@ -1,0 +1,96 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: grafana
+      version: "7.3.11"
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: monitoring
+      interval: 12h
+  values:
+    admin:
+      existingSecret: grafana-admin-credentials
+      userKey: admin-user
+      passwordKey: admin-password
+
+    grafana.ini:
+      server:
+        root_url: https://grafana.eniohomelab.com
+      analytics:
+        check_for_updates: "false"
+        reporting_enabled: "false"
+
+    persistence:
+      enabled: true
+      size: 2Gi
+
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - name: Mimir
+            type: prometheus
+            uid: mimir
+            url: http://mimir-nginx:80/prometheus
+            access: proxy
+            isDefault: true
+            jsonData:
+              httpMethod: POST
+              exemplarTraceIdDestinations:
+                - name: traceID
+                  datasourceUid: tempo
+          - name: Loki
+            type: loki
+            uid: loki
+            url: http://loki:3100
+            access: proxy
+            jsonData:
+              derivedFields:
+                - datasourceUid: tempo
+                  matcherRegex: "traceID=(\\w+)"
+                  name: TraceID
+                  url: "$${__value.raw}"
+          - name: Tempo
+            type: tempo
+            uid: tempo
+            url: http://tempo:3100
+            access: proxy
+            jsonData:
+              tracesToLogsV2:
+                datasourceUid: loki
+                filterByTraceID: true
+              lokiSearch:
+                datasourceUid: loki
+
+    dashboardProviders:
+      dashboardproviders.yaml:
+        apiVersion: 1
+        providers:
+          - name: kubernetes
+            folder: Kubernetes
+            type: file
+            disableDeletion: false
+            options:
+              path: /var/lib/grafana/dashboards/kubernetes
+
+    dashboards:
+      kubernetes:
+        kubernetes-cluster:
+          gnetId: 6417
+          revision: 1
+          datasource: Mimir
+        kubernetes-namespaces:
+          gnetId: 15758
+          revision: 1
+          datasource: Mimir
+        loki-logs:
+          gnetId: 13639
+          revision: 1
+          datasource: Loki
