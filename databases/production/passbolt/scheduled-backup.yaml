@@ -7,4 +7,4 @@ spec:
   schedule: "0 5 3 * * *"
   backupOwnerReference: cluster
   cluster:
-    name: passbolt-db-production-cnpg
+    name: passbolt-db-production-cnpg-v1
