@@ -6,3 +6,4 @@ data:
   FORGEJO__database__DB_TYPE: postgres
   FORGEJO__database__NAME: app
   FORGEJO__database__HOST: forgejo-db-production-cnpg-rw:5432
+  FORGEJO__actions__ENABLED: "true"

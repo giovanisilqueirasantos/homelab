@@ -4,6 +4,8 @@ namespace: forgejo
 resources:
   - forgejo-container-env-secret.yaml
   - forgejo-configmap.yaml
+  - forgejo-runner-config-secret.yaml
+  - forgejo-runner-deployment.yaml
   - cloudflared-configmap.yaml
   - cloudflared-deployment.yaml
   - cloudflared-creds-secret.yaml

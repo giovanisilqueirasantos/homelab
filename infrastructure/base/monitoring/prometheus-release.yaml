@@ -1,0 +1,66 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: prometheus
+      version: "29.36.1"
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: monitoring
+      interval: 12h
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    server:
+      # Alloy scrapes and pushes metrics here via remote_write
+      extraFlags:
+        - web.enable-lifecycle
+        - web.enable-remote-write-receiver
+      retention: 30d
+      retentionSize: 9GB
+      persistentVolume:
+        enabled: true
+        size: 10Gi
+
+    # Scraping is done by Alloy; keep only Prometheus' self-scrape
+    scrapeConfigs:
+      kubernetes-api-servers:
+        enabled: false
+      kubernetes-nodes:
+        enabled: false
+      kubernetes-nodes-cadvisor:
+        enabled: false
+      kubernetes-service-endpoints:
+        enabled: false
+      kubernetes-service-endpoints-slow:
+        enabled: false
+      prometheus-pushgateway:
+        enabled: false
+      kubernetes-services:
+        enabled: false
+      kubernetes-pods:
+        enabled: false
+      kubernetes-pods-slow:
+        enabled: false
+
+    alertmanager:
+      enabled: false
+
+    kube-state-metrics:
+      enabled: false
+
+    prometheus-node-exporter:
+      enabled: false
+
+    prometheus-pushgateway:
+      enabled: false

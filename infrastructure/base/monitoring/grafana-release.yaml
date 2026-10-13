@@ -14,6 +14,12 @@ spec:
         name: grafana
         namespace: monitoring
       interval: 12h
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
   values:
     admin:
       existingSecret: grafana-admin-credentials
@@ -35,10 +41,10 @@ spec:
       datasources.yaml:
         apiVersion: 1
         datasources:
-          - name: Mimir
+          - name: Prometheus
             type: prometheus
-            uid: mimir
-            url: http://mimir-nginx:80/prometheus
+            uid: prometheus
+            url: http://prometheus-server:80
             access: proxy
             isDefault: true
             jsonData:
@@ -85,11 +91,11 @@ spec:
         kubernetes-cluster:
           gnetId: 6417
           revision: 1
-          datasource: Mimir
+          datasource: Prometheus
         kubernetes-namespaces:
           gnetId: 15758
           revision: 1
-          datasource: Mimir
+          datasource: Prometheus
         loki-logs:
           gnetId: 13639
           revision: 1

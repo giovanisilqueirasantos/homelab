@@ -10,3 +10,5 @@ spec:
   selector:
     app: forgejo
   type: ClusterIP
+  # Pinned: k3s registries.yaml on the node mirrors the in-cluster registry to this IP
+  clusterIP: 10.43.244.108

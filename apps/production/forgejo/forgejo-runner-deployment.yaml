@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forgejo-runner
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: forgejo-runner
+  template:
+    metadata:
+      labels:
+        app: forgejo-runner
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: runner
+          image: code.forgejo.org/forgejo/runner:13.2.0
+          command:
+            - sh
+            - -c
+            - |
+              while ! nc -z 127.0.0.1 2375 </dev/null; do
+                echo 'waiting for docker daemon...'
+                sleep 2
+              done
+              exec forgejo-runner daemon --config /config/config.yml
+          workingDir: /data
+          env:
+            - name: HOME
+              value: /data
+            - name: DOCKER_HOST
+              value: tcp://127.0.0.1:2375
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              memory: 256Mi
+          volumeMounts:
+            - name: runner-data
+              mountPath: /data
+            - name: runner-config
+              mountPath: /config
+              readOnly: true
+
+        # Docker daemon that runs the job containers (kaniko builds run inside them)
+        - name: dind
+          image: docker.io/library/docker:28-dind
+          args:
+            - dockerd
+            - --host=tcp://127.0.0.1:2375
+            - --tls=false
+          securityContext:
+            privileged: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              memory: 3Gi
+          volumeMounts:
+            - name: docker-data
+              mountPath: /var/lib/docker
+
+      volumes:
+        - name: runner-data
+          emptyDir: {}
+        - name: docker-data
+          emptyDir: {}
+        - name: runner-config
+          secret:
+            secretName: forgejo-runner-config
+            items:
+              - key: config.yml
+                path: config.yml

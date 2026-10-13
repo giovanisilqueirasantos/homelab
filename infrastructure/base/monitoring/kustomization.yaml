@@ -4,7 +4,7 @@ resources:
   - namespace.yaml
   - helm-repositories.yaml
   - grafana-release.yaml
-  - mimir-release.yaml
+  - prometheus-release.yaml
   - loki-release.yaml
   - tempo-release.yaml
   - alloy-release.yaml

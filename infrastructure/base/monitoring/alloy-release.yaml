@@ -64,13 +64,13 @@ spec:
 
           prometheus.scrape "pods" {
             targets    = discovery.relabel.pods_metrics.output
-            forward_to = [prometheus.remote_write.mimir.receiver]
+            forward_to = [prometheus.remote_write.prometheus.receiver]
             job_name   = "kubernetes-pods"
           }
 
           prometheus.scrape "kube_state_metrics" {
             targets    = [{"__address__" = "kube-state-metrics.monitoring:8080"}]
-            forward_to = [prometheus.remote_write.mimir.receiver]
+            forward_to = [prometheus.remote_write.prometheus.receiver]
             job_name   = "kube-state-metrics"
           }
 
@@ -95,7 +95,7 @@ spec:
 
           prometheus.scrape "cadvisor" {
             targets    = discovery.relabel.cadvisor.output
-            forward_to = [prometheus.remote_write.mimir.receiver]
+            forward_to = [prometheus.remote_write.prometheus.receiver]
             job_name   = "kubernetes-cadvisor"
             scheme     = "https"
 
@@ -109,9 +109,9 @@ spec:
             }
           }
 
-          prometheus.remote_write "mimir" {
+          prometheus.remote_write "prometheus" {
             endpoint {
-              url = "http://mimir-nginx.monitoring:80/api/v1/push"
+              url = "http://prometheus-server.monitoring:80/api/v1/write"
             }
           }
 
