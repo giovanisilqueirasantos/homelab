@@ -53,6 +53,10 @@ spec:
             - dockerd
             - --host=tcp://127.0.0.1:2375
             - --tls=false
+            # Match the pod network MTU (flannel: 1450), including the
+            # per-job networks, or large downloads stall inside jobs
+            - --mtu=1450
+            - --default-network-opt=bridge=com.docker.network.driver.mtu=1450
           securityContext:
             privileged: true
           resources:
