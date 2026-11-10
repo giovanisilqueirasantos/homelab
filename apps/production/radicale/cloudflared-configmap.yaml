@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-configmap
+data:
+  config.yaml: |
+    tunnel: radicale
+    credentials-file: /etc/cloudflared/creds/credentials.json
+
+    no-autoupdate: true
+    ingress:
+    - hostname: radicale.eniohomelab.com
+      service: http://radicale:80
+    - service: http_status:404

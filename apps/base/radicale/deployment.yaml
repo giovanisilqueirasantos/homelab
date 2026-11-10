@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radicale
+  labels:
+    app: radicale
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radicale
+  template:
+    metadata:
+      labels:
+        app: radicale
+    spec:
+      containers:
+      - name: radicale
+        image: tomsquest/docker-radicale:3.9.0.0
+        ports:
+        - containerPort: 5232
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: config
+          mountPath: /config/config
+          subPath: config
+          readOnly: true
+        - name: users
+          mountPath: /etc/radicale/users
+          subPath: users
+          readOnly: true
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: radicale-data
+      - name: config
+        configMap:
+          name: radicale-config
+      - name: users
+        secret:
+          secretName: radicale-users
